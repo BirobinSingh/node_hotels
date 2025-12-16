@@ -1,6 +1,12 @@
 import mongoose from 'mongoose'
+import dotenv from 'dotenv';
+dotenv.config()
 
-const mongooseUrl = 'mongodb://127.0.0.1:27017/hotels';
+// const mongooseUrl = 'mongodb://127.0.0.1:27017/hotels';
+
+const mongooseUrl = process.env.MONGO_URL;
+// const mongooseUrl ="mongodb+srv://grobin578_db_user:Z61ksFETOduwCGux@cluster0.2mfynf8.mongodb.net/node_db?appName=Cluster0"
+
 
 // mongoose.connect(mongooseUrl
 //     ,{
@@ -10,6 +16,11 @@ const mongooseUrl = 'mongodb://127.0.0.1:27017/hotels';
 
 // parameter not use anymore
 // );
+
+if (!mongooseUrl) {
+  console.error("❌ MONGO_URL is undefined");
+  process.exit(1);
+}
 
 
 try{

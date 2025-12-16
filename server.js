@@ -1,15 +1,21 @@
+import dotenv from "dotenv";
+dotenv.config();          // ✅ FIRST
+
 import express from "express";
 import  "./db.js";
 
-import Person from "./models/person.js";
-import Menu from "./models/menu.js";
 
 import personRoutes from "./routes/personRoutes.js";
 import menuRoutes from "./routes/menuRoutes.js"
 
 // const express = require('express');
 
+
+
 const app = express();
+
+const port = process.env.PORT || 3000 ;
+
 
 // ealier we use bodyparser middleware
 app.use(express.json());
@@ -20,6 +26,7 @@ app.use(express.json());
 app.use('/person',personRoutes);
 
 app.use('/menu',menuRoutes)
+
 
 
 // app.get("/person",async(req,res)=>{
@@ -82,7 +89,7 @@ app.get("/persons", (req, res) => {
 
 
 
-app.listen(3000, () => console.log("server started at 3000"));
+app.listen(port, () => console.log(`server started at ${port} `));
 
 
 
