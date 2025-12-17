@@ -23,6 +23,14 @@ app.use(express.json());
 
 //routes
 
+const logReqeuest = (req ,res ,next) => {
+  console.log(`${new Date().toLocaleString()} request made to : ${req.originalUrl}` )
+}
+
+app.get("/",logReqeuest, (req, res) => {  
+  res.send("hello all this is new project for learning the backend");
+});
+
 app.use('/person',personRoutes);
 
 app.use('/menu',menuRoutes)
@@ -106,9 +114,7 @@ app.listen(port, () => console.log(`server started at ${port} `));
 
 
 
-app.get("/", (req, res) => {
-  res.send("hello all this is new project for learning the backend");
-});
+
 
 app.get("/intro", (req, res) => {
   var intro = {
